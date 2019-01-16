@@ -26,12 +26,7 @@ public class Main {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
         Movie movieC = (Movie)context.getBean("movie3");
         Movie movieD = (Movie)context.getBean("movie3");
-        Movie movieE = (Movie)context.getBean("movie4");
         System.out.println(movieC.getActor());
         System.out.println(movieD == movieC);
-
-        System.out.println(movieE.getActor());
-
-
     }
 }
