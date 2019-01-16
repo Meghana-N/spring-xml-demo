@@ -14,17 +14,24 @@ import org.springframework.core.io.ClassPathResource;
 public class Main {
     public static void main(String[] args) {
         BeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
-        Movie movie1 = (Movie) beanFactory.getBean("movie");
-        System.out.println(movie1.getActor());
+        Movie movieA = (Movie) beanFactory.getBean("movie1");
+        System.out.println(movieA.getActor());
 
         BeanDefinitionRegistry beanDefinitionRegistry = new DefaultListableBeanFactory();
         BeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanDefinitionRegistry);
         beanDefinitionReader.loadBeanDefinitions(new ClassPathResource("beans.xml"));
-        Movie movie2 = ((DefaultListableBeanFactory) beanDefinitionRegistry).getBean(Movie.class);
-        System.out.println(movie2.getActor());
+        Movie movieB = (Movie)((DefaultListableBeanFactory) beanDefinitionRegistry).getBean("movie2");
+        System.out.println(movieB.getActor());
 
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-        Movie movie3 = context.getBean(Movie.class);
-        System.out.println(movie3.getActor());
+        Movie movieC = (Movie)context.getBean("movie3");
+        Movie movieD = (Movie)context.getBean("movie3");
+        Movie movieE = (Movie)context.getBean("movie4");
+        System.out.println(movieC.getActor());
+        System.out.println(movieD == movieC);
+
+        System.out.println(movieE.getActor());
+
+
     }
 }
